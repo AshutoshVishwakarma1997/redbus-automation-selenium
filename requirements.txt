@@ -1,0 +1,30 @@
+Project Requirements and Setup Guide
+====================================
+
+Core Tooling
+- Java JDK: JDK 11 or higher
+- Maven: Maven 3.8 or higher
+- Browser: Latest stable Google Chrome
+- ChromeDriver: Managed automatically by WebDriverManager (no manual driver setup required)
+- IDE: IntelliJ IDEA or Eclipse recommended
+
+Compatibility Notes
+- Keep Chrome browser reasonably up to date so WebDriverManager can resolve a matching ChromeDriver binary.
+- Internet access is required the first time Maven downloads dependencies and WebDriverManager resolves the browser driver.
+
+Project Setup
+- Install dependencies and compile the project:
+  mvn clean install
+
+How to Run
+- Run smoke tests:
+  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng-smoke.xml
+- Run regression tests:
+  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml
+- Generate the HTML report:
+  mvn surefire-report:report
+
+Report Location
+- Generated HTML report:
+  target/site/surefire-report.html
+

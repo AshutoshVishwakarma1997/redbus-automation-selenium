@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="RedBus Regression Suite" parallel="tests">
+    <parameter name="appURL" value="https://www.redbus.in/" />
+    <parameter name="browser" value="chrome" />
+    <parameter name="username" value="existing.user@example.com" />
+    <parameter name="password" value="ExistingPassword123!" />
+    <parameter name="sourceCity" value="Hyderabad" />
+    <parameter name="destinationCity" value="Vijayawada" />
+    <parameter name="travelDate" value="31-12-2026" />
+    <parameter name="fullName" value="Regression Suite User" />
+    <parameter name="email" value="regression.user@example.com" />
+    <parameter name="mobileNumber" value="9123456789" />
+
+    <test name="All Functional Tests">
+        <parameter name="travelDate" value="01-01-2027" />
+        <groups>
+            <run>
+                <include name="smoke" />
+                <include name="regression" />
+                <exclude name="disabled" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.CreateAccountTests" />
+            <class name="tests.LoginTests" />
+            <class name="tests.SearchBookingTests" />
+        </classes>
+    </test>
+</suite>
