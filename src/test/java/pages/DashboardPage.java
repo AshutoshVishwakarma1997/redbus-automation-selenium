@@ -1,17 +1,16 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import base.BasePage;
-import utils.WaitUtils;
 
 // OOP - Inheritance: DashboardPage extends BasePage for shared behaviors.
 public class DashboardPage extends BasePage {
 
     // OOP - Encapsulation: dashboard elements remain private inside the page object.
-    private WebElement profileNameLabel; // TODO: Add locator for logged-in profile name label here
-    private WebElement dashboardContainer; // TODO: Add locator for dashboard container here
+    private By profileNameLabel; // TODO: Add locator for logged-in profile name label here
+    private By dashboardContainer; // TODO: Add locator for dashboard container here
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -39,8 +38,6 @@ public class DashboardPage extends BasePage {
     @Override
     // OOP - Polymorphism: DashboardPage overrides toString() with dashboard-specific text.
     public String toString() {
-        WaitUtils.waitForVisibility(dashboardContainer, 10);
         return getPageName();
     }
 }
-

@@ -1,7 +1,7 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 import utils.WaitUtils;
@@ -10,10 +10,10 @@ import utils.WaitUtils;
 public class SearchResultsPage extends BasePage {
 
     // OOP - Encapsulation: search results elements are private within the page object.
-    private WebElement resultsContainer; // TODO: Add locator for search results container here
-    private WebElement firstAvailableBusCard; // TODO: Add locator for first available bus result here
-    private WebElement proceedToSeatSelectionButton; // TODO: Add locator for proceed to seat selection button here
-    private WebElement loadingSpinner; // TODO: Add locator for results loading spinner here
+    private By resultsContainer; // TODO: Add locator for search results container here
+    private By firstAvailableBusCard; // TODO: Add locator for first available bus result here
+    private By proceedToSeatSelectionButton; // TODO: Add locator for proceed to seat selection button here
+    private By loadingSpinner; // TODO: Add locator for results loading spinner here
 
     public SearchResultsPage(WebDriver driver) {
         super(driver);
@@ -21,7 +21,7 @@ public class SearchResultsPage extends BasePage {
 
     public boolean areSearchResultsDisplayed() {
         if (loadingSpinner != null) {
-            WaitUtils.waitForInvisibility(loadingSpinner, 10);
+            WaitUtils.waitForInvisibility(driver, loadingSpinner, 10);
         }
         return isElementDisplayed(resultsContainer, 10);
     }
@@ -54,8 +54,6 @@ public class SearchResultsPage extends BasePage {
     @Override
     // OOP - Polymorphism: SearchResultsPage overrides toString() to describe search results.
     public String toString() {
-        WaitUtils.waitForVisibility(resultsContainer, 10);
         return getPageName();
     }
 }
-

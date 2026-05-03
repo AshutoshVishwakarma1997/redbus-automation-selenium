@@ -1,17 +1,16 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import base.BasePage;
-import utils.WaitUtils;
 
 // OOP - Inheritance: SeatSelectionPage extends BasePage to share reusable page methods.
 public class SeatSelectionPage extends BasePage {
 
     // OOP - Encapsulation: seat selection elements stay private within the page object.
-    private WebElement seatSelectionPanel; // TODO: Add locator for seat selection panel here
-    private WebElement seatSelectionTitle; // TODO: Add locator for seat selection title here
+    private By seatSelectionPanel; // TODO: Add locator for seat selection panel here
+    private By seatSelectionTitle; // TODO: Add locator for seat selection title here
 
     public SeatSelectionPage(WebDriver driver) {
         super(driver);
@@ -39,8 +38,6 @@ public class SeatSelectionPage extends BasePage {
     @Override
     // OOP - Polymorphism: SeatSelectionPage overrides toString() with seat-selection-specific text.
     public String toString() {
-        WaitUtils.waitForVisibility(seatSelectionPanel, 10);
         return getPageName();
     }
 }
-

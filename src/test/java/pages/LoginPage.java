@@ -1,20 +1,19 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import base.BasePage;
-import utils.WaitUtils;
 
 // OOP - Inheritance: LoginPage extends BasePage to inherit shared page methods.
 public class LoginPage extends BasePage {
 
     // OOP - Encapsulation: page elements are private and hidden behind public actions.
-    private WebElement usernameInput; // TODO: Add locator for username input here
-    private WebElement passwordInput; // TODO: Add locator for password input here
-    private WebElement rememberMeCheckbox; // TODO: Add locator for remember me checkbox here
-    private WebElement loginButton; // TODO: Add locator for login button here
-    private WebElement loginHeaderLabel; // TODO: Add locator for login header label here
+    private By usernameInput; // TODO: Add locator for username input here
+    private By passwordInput; // TODO: Add locator for password input here
+    private By rememberMeCheckbox; // TODO: Add locator for remember me checkbox here
+    private By loginButton; // TODO: Add locator for login button here
+    private By loginHeaderLabel; // TODO: Add locator for login header label here
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -66,8 +65,6 @@ public class LoginPage extends BasePage {
     @Override
     // OOP - Polymorphism: LoginPage overrides toString() to describe itself differently at runtime.
     public String toString() {
-        WaitUtils.waitForVisibility(loginHeaderLabel, 10);
-        return getPageName() + " - " + loginHeaderLabel.getText();
+        return getPageName() + " - " + readText(loginHeaderLabel, 10);
     }
 }
-

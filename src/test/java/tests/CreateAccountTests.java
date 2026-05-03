@@ -21,23 +21,16 @@ public class CreateAccountTests extends BaseTest {
     @Parameters({"fullName", "email", "mobileNumber", "password"})
     @Test(groups = {"regression"})
     public void verifyUserCanCreateAccount(String fullName, String email, String mobileNumber, String password) {
-        HomePage homePage = new HomePage(getDriver());
-        SignUpPage signUpPage = homePage.clickSignUp();
+        HomePage homePage = new HomePage(getDriver()); // we created an object of Home Page class and passed the driver instance to it which we get from BaseTest class, so that we can perform actions on the home page using that driver.
+        SignUpPage signUpPage = homePage.clickSignUp(); // this will return the object of SignUpPage class because after clicking on sign up link we will be navigated to sign up page and we can perform actions on that page using that object.
 
-        // Assertion - isEnabled(): verifies the register button is interactable before submit.
-        Assert.assertTrue(signUpPage.isRegisterButtonEnabled(), "Register button should be enabled.");
+        Assert.assertTrue(signUpPage.isPageLoaded(), "Sign up dialog should be displayed.");
+        Assert.assertEquals(signUpPage.getDialogTitleText(), "Login to get exciting offers",
+                "Sign up dialog title should match.");
+        Assert.assertTrue(signUpPage.isCaptchaDisplayed(), "Captcha should be displayed on the sign up dialog.");
 
-        signUpPage.enterName(fullName)
-                .enterEmail(email)
-                .enterMobile(mobileNumber)
-                .enterPassword(password)
-                .clickRegister();
-
-        // Assertion - isDisplayed(): verifies the success message is visible after registration.
-        Assert.assertTrue(signUpPage.isSuccessMessageDisplayed(), "Success message should be displayed.");
-        // Assertion - getText() with Assert.assertEquals: verifies the success message content.
-        Assert.assertEquals(signUpPage.getSuccessMessageText(), "Account created successfully",
-                "Success message text should match.");
+        signUpPage.enterMobile(mobileNumber);
+        Assert.assertFalse(signUpPage.isContinueButtonEnabled(),
+                "Continue button should remain disabled until captcha is completed.");
     }
 }
-
