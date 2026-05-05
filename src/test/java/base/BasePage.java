@@ -1,5 +1,7 @@
 package base;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,6 +27,11 @@ public abstract class BasePage {
         return driver.findElement(locator);
     }
 
+    protected List<WebElement> findElements(By locator, int timeoutSeconds) {
+        WaitUtils.waitForVisibility(driver, locator, timeoutSeconds);
+        return driver.findElements(locator);
+    }
+
     protected void clickElement(By locator, int timeoutSeconds) {
         WaitUtils.waitForClickability(driver, locator, timeoutSeconds);
         driver.findElement(locator).click();
@@ -37,12 +44,14 @@ public abstract class BasePage {
 
     protected void typeText(By locator, String value, int timeoutSeconds) {
         WebElement element = findElement(locator, timeoutSeconds);
+        element.click();
         element.clear();
         element.sendKeys(value);
     }
 
     protected void typeText(WebElement element, String value, int timeoutSeconds) {
         WaitUtils.waitForVisibility(element, timeoutSeconds);
+        element.click();
         element.clear();
         element.sendKeys(value);
     }
